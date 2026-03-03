@@ -37,7 +37,7 @@ jobs:
              run : pip install -r requirements.txt
             
            - name : Exécuter pytest avec couverture
-             run : pytest  tests/ -v --cov=app
+             run : pytest  test/ -v --cov=app
     build:
         runs-on: ubuntu-latest
         needs: test
