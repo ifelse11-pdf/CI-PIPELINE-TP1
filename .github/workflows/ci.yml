@@ -49,3 +49,11 @@ jobs:
               run : python -m build
             - name : Upload du résultat
               uses : actions/upload-artifact@v4
+              with:
+                name: artifact
+                if-no-files-found: warn
+                compression-level: 6
+                overwrite: false
+                include-hidden-files: false
+
+            
