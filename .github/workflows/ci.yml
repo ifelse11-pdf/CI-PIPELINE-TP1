@@ -43,6 +43,8 @@ jobs:
         needs: test
         steps:
             - uses : actions/checkout@v4
+            - name: Installer build
+              run: pip install build
             - name : Generer le package
               run : python -m build
             - name : Upload du résultat
