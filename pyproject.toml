@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ci-pipeline-tp1"
+version = "0.1.0"
+description = "Projet de démonstration CI/CD avec GitHub Actions"
+authors = [
+    { name="ifelse11-pdf", email="mouhamedalioabdoussale@gmail.com" }
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "colorama",
+    "packaging",
+    "pyproject-hooks"
+]
+
+[tool.pytest.ini_options]
+testpaths = ["test"]
