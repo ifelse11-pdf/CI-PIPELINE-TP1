@@ -10,7 +10,7 @@ jobs:
     Lint:
         runs-on: ubuntu-latest
         steps:
-           - uses : action/checkout@v4
+           - uses : actions/checkout@v4
 
            - name : Installer pyton
              uses : actions/setup-python@v5
@@ -22,23 +22,27 @@ jobs:
 
             
            - name : Lancer  le Linter
-             run : flake8 app --count --select E9,F63,F7,F82 --show-source --statistics
-                  flake8 app --count --max-complexity=10 --max-line-length=127 --statistics
-                  flake8 tests --count --max-line-length=127 --statistics
+             run : |
+              flake8 app --count --select E9,F63,F7,F82 --show-source --statistics
+              flake8 app --count --max-complexity=10 --max-line-length=127 --statistics
+              flake8 tests --count --max-line-length=127 --statistics
+
     test:
         runs-on: ubuntu-latest
         needs: Lint
         steps:
+           - uses : actions/checkout@v4
     
            - name : Installer les dépendances
              run : pip install -r requirements.txt
             
            - name : Exécuter pytest avec couverture
-             run : pytest  tests/ -v --cov=src
+             run : pytest  tests/ -v --cov=app
     build:
         runs-on: ubuntu-latest
         needs: test
         steps:
+            - uses : actions/checkout@v4
             - name : Generer le package
               run : python -m build
             - name : Upload du résultat
